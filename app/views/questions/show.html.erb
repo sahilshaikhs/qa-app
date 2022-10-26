@@ -1,0 +1,32 @@
+<h1> title:  <%= @question.title %></h1>
+<h1> question: <%= @question.question %></h1>
+<p> description : <%= @question.problem_description %></p>
+
+
+
+
+
+<h1> <%= @question.answers.count %> Answeres</h1>
+
+<%@question.answers.each do |ans|%>
+  <h3><%=ans.user.name%></h3></br>
+  <p><%=ans.description%></p></br></br></br></br>
+<%end%>
+
+
+
+
+
+
+<h1>submit yours answers</h1>
+<%= form_with model: [ @question, @question.answers.build ] do |form| %>
+  <p>
+    <%= form.label :answer %><br>
+    <%= form.text_area :description %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'quesitons' ,questions_path%>
